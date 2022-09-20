@@ -5,7 +5,7 @@ import butcherPigImage from './assets/butcherPig.jpeg'
 const App = () => {
 
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("fry")
+  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
@@ -49,18 +49,32 @@ const App = () => {
         let newWord = eachWord.split('').slice(3).join('')
         //let shiftWord = eachWord.split('').shift()
         return newWord + 'squay'
-      }
-      // let newWord2 = []
-      // for( let i = 0; i < eachWord.length ; i++){
-      //   return newWord2.pop(eachWord[i])
-      // }
-      // console.log(newWord2) 
-      //console.log('qu',eachWord)
-      else if (eachWord.includes('qu')) {
+      } else if (eachWord.includes('qu')) {
         let newWord2 = eachWord.split('').slice(2).join('')
         return newWord2 + 'quay'
+      } else {
+        let restArr = []
+        let constArr = []
+        let indexArr;
+
+        for (let i = 0; i < eachWord.length; i++) {
+          if (eachWord[i] !== vowelsArray[0]) {
+            constArr.push(eachWord[i]);
+            indexArr = i;
+          } else {
+            break;
+          }
+        }
+
+        restArr = eachWord.slice(indexArr + 1);
+        let finalWord = restArr.concat(constArr.join(''));
+
+        console.log(typeof finalWord);
+
+        // return finalWord;
+         return finalWord + 'ay'
       }
-      return eachWord
+  
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
 
