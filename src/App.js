@@ -5,7 +5,7 @@ import butcherPigImage from './assets/butcherPig.jpeg'
 const App = () => {
 
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
-  const [userInput, setUserInput] = useState("apple through queen squeal fry fluent")
+  const [userInput, setUserInput] = useState("fry")
   const [inputTranslated, setInputTranslated] = useState("")
 
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
@@ -17,26 +17,53 @@ const App = () => {
 
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
     const translatedWordsArray = arrayOfUserInput.map(eachWord => {
-      console.log("eachWord:", eachWord)
+      //console.log("eachWord:", eachWord)
 
       // NO MODIFICATION NEEDED: this code will look at each word and identify the vowels
       const vowelsArray = eachWord.split("").filter(vowel => {
         return (
-          vowel === "a" || 
-          vowel === "e" || 
-          vowel === "i" || 
-          vowel === "o" || 
+          vowel === "a" ||
+          vowel === "e" ||
+          vowel === "i" ||
+          vowel === "o" ||
           vowel === "u"
         )
       })
       console.log("vowelsArray:", vowelsArray)
 
-      // ACTION ITEM: your Pig Latin logic goes here!
+      // ACTION ITEM: your Pig Latin logic goes here!'
 
-    
+      //      let quChecker = eachWord.split('').filter('qu')
+      if (vowelsArray == '') {
+        console.log('test1')
+      let newArr = eachWord.split('')
+      console.log(newArr)
+       let newWord3 = newArr.unshift(newArr.pop())
+       console.log(newArr +'ay')
+       newWord3 = newArr.join('')
+        return newWord3 + 'ay'
+      }
+      else if (eachWord[0] === vowelsArray[0]) {
+        return eachWord + 'way'
+      } else if (eachWord.includes('squ')) {
+        let newWord = eachWord.split('').slice(3).join('')
+        //let shiftWord = eachWord.split('').shift()
+        return newWord + 'squay'
+      }
+      // let newWord2 = []
+      // for( let i = 0; i < eachWord.length ; i++){
+      //   return newWord2.pop(eachWord[i])
+      // }
+      // console.log(newWord2) 
+      //console.log('qu',eachWord)
+      else if (eachWord.includes('qu')) {
+        let newWord2 = eachWord.split('').slice(2).join('')
+        return newWord2 + 'quay'
+      }
+      return eachWord
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
-      return eachWord
+
     })
 
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
